@@ -2,7 +2,7 @@ import csv
 import flask
 import os
 
-from flask import Flask, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 #Set up database
 engine = create_engine("sqlite:///data.db")
-db = scoped_session(sessionmaker[bind=engine])
+db = scoped_session(sessionmaker(bind=engine))
 
 @app.route("/", methods=["GET", "POST"])
 def index():
